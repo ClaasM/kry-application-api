@@ -36,7 +36,8 @@ fun <T> safeLaunch(ctx: RoutingContext, body: suspend () -> T) {
         try {
             body()
         } catch (e: Exception) {
-            ctx.response().endWithJson(CommonServiceError(e.localizedMessage, 501))
+            e.printStackTrace()
+            ctx.response().endWithJson(CommonServiceError(if (e.localizedMessage != null) e.localizedMessage else "Error", 501))
         }
     }
 }

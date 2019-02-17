@@ -11,6 +11,7 @@ import java.util.*
 
 class ServiceStatusHandlers() {
     private val ServiceStatusService = ServiceStatusService()
+    private val gson = Gson()
 
     suspend fun getServices(ctx: RoutingContext) {
         safeLaunch(ctx) {
@@ -21,7 +22,7 @@ class ServiceStatusHandlers() {
 
     suspend fun getServiceById(ctx: RoutingContext) {
         safeLaunch(ctx) {
-            val _id = UUID.fromString(ctx.request().getParam("id"))
+            val _id = ctx.request().getParam("id")
             val _service = ServiceStatusService.get(_id)
             ctx.response().endWithJson(_service)
         }
@@ -29,7 +30,7 @@ class ServiceStatusHandlers() {
 
     suspend fun addService(ctx: RoutingContext) {
         safeLaunch(ctx) {
-            val tmpService: ServiceStatus = ServiceStatus.gson.fromJson(ctx.bodyAsString)
+            val tmpService: ServiceStatus = gson.fromJson(ctx.bodyAsString)
             val newService: ServiceStatus = ServiceStatus(serviceURL = tmpService.serviceURL)
             val _service = ServiceStatusService.create(newService)
             ctx.response().endWithJson(_service)
@@ -38,16 +39,16 @@ class ServiceStatusHandlers() {
 
     suspend fun updateServiceById(ctx: RoutingContext) {
         safeLaunch(ctx) {
-            val _id = UUID.fromString(ctx.request().getParam("id"))
+            val _id = ctx.request().getParam("id")
             val newService: ServiceStatus = gson.fromJson(ctx.bodyAsString)
-            val _todo = ServiceStatusService.update(_id, newService)
-            ctx.response().endWithJson(_todo)
+            val _service = ServiceStatusService.update(_id, newService)
+            ctx.response().endWithJson(_service)
         }
     }
 
     suspend fun removeServiceById(ctx: RoutingContext) {
         safeLaunch(ctx) {
-            val _id = UUID.fromString(ctx.request().getParam("id"))
+            val _id = ctx.request().getParam("id")
             val _service = ServiceStatusService.remove(_id)
             ctx.response().endWithJson(_service)
         }

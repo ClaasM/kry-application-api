@@ -38,13 +38,13 @@ class ServiceStatus(
             val text = reader.readText()
             val services = this.gson.fromJson(text, Array<ServiceStatus>::class.java)
             reader.close()
-            return services.asList() as MutableList
+            return services.toMutableList()
         }
 
-        fun writeServices(services: List<ServiceStatus>) {
+        fun writeServices(services: MutableList<ServiceStatus>) {
             val stream = FileOutputStream(STORAGE_FILE)
             val writer = OutputStreamWriter(stream)
-            val text = this.gson.toJson(services, Array<ServiceStatus>::class.java)
+            val text = this.gson.toJson(services.toTypedArray(), Array<ServiceStatus>::class.java)
             writer.write(text)
             writer.close()
         }
