@@ -1,4 +1,6 @@
-# Vert.x + Kotlin (w/ coroutines) boilerplate 🛠
+# KRY Application - API
+
+Based on [this](https://github.com/kanzitelli/kotlin-vertx-boilerplate) boilerplate.
 
 ### Prerequisites
 * Make sure you have [JAVA installed](https://www.java.com/en/download/help/download_options.xml)
@@ -8,9 +10,11 @@
 
 ### How to run:
 
-* Clone the repo: `git clone https://github.com/kanzitelli/kotlin-vertx-boilerplate.git`
-* Rename the folder if needed: `mv kotlin-vertx-boilerplate new_name` (*note:* if you want to rename the package then it would be safer to do it directly in the IntelliJ Idea)
-* `$ cd new_name/`
+* Clone the repo: `git clone https://github.com/ClaasM/kry-application-api.git`
+* `$ cd kry-application-api/`
+* Create the empty "database" `echo [] > /your/path/services.json`
+* Set the `DATABASE` env-variable to the files absolute path
+* Set the `HOST`and `PORT` env-variables if you do not want to use the default `localhost:8080`
 * `$ gradle build`
 * `$ gradle run`
 * or to build a Jar and run in production mode
@@ -19,27 +23,15 @@ $ gradle shadowJar
 $ java -jar build/libs/app-shadow.jar
 ``` 
 
-### Heroku deployment
-* `$ heroku login`
-* `$ heroku create`
-* `$ git push heroku master`
-* `$ heroku open`
-* **NOTE:** Don't forget to go to [Heroku dashboard](https://dashboard.heroku.com) → your app → Settings, and then add Config Vars: 
-    * `PORT=80` 
-    * `HOST=https://your-app-name.herokuapp.com` 
-
-For more information check [this link](https://devcenter.heroku.com/articles/getting-started-with-kotlin).
 
 ### API ENDPOINTS
-* `/home{.json}` - returns `json` with information gathered from this [link](https://api.myjson.com/bins/6qk2h) with current time added to JSON response.
-* `/hello{.json}` - returns `json` with simple message `{ message: "Hello, World!" }`.
-* `/todos` - simple local (data stored in an array) implementation of todos CRUD actions .
 
-### What's included:
+`HTTP GET /services` returns all services and their status.
+`HTTP POST /services` adds a new service to check with name and URL and
+assigns a random id.
+`HTTP DELETE /services/{service_id}` removes the service with the
+specified service_id.
 
-* Building a Web application on top of [Vert.x](http://vertx.io/)
-* [Kotlin coroutines](http://vertx.io/docs/vertx-lang-kotlin-coroutines/kotlin/) 🎉 
-* Querying remote services with the [Retrofit2](https://github.com/square/retrofit) (+ [Kotlin coroutines await() for Retrofit2 Call](https://github.com/gildor/kotlin-coroutines-retrofit))
-* Using [Gradle](https://gradle.org/) for enabling efficient workflow
-* Manipulating JSON with [Kotson](https://github.com/SalomonBrys/Kotson)
-* Logging with [Logback](http://logback.qos.ch/)
+Additionally:
+
+`HTTP PUT /service/{service_id}` to update a service's status.

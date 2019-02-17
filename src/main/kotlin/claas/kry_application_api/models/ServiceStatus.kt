@@ -1,9 +1,6 @@
 package claas.kry_application_api.models
 
-import claas.kry_application_api.common.API_ENDPOINT
-import claas.kry_application_api.common.HOST
-import claas.kry_application_api.common.PORT
-import claas.kry_application_api.common.STORAGE_FILE
+import claas.kry_application_api.common.*
 import com.google.gson.*
 import java.io.FileInputStream
 import java.io.FileOutputStream
@@ -33,7 +30,7 @@ class ServiceStatus(
         var gson: Gson = Gson()
 
         fun readServices(): MutableList<ServiceStatus> {
-            val stream = FileInputStream(STORAGE_FILE)
+            val stream = FileInputStream(DATABASE)
             val reader = InputStreamReader(stream)
             val text = reader.readText()
             val services = this.gson.fromJson(text, Array<ServiceStatus>::class.java)
@@ -42,7 +39,7 @@ class ServiceStatus(
         }
 
         fun writeServices(services: MutableList<ServiceStatus>) {
-            val stream = FileOutputStream(STORAGE_FILE)
+            val stream = FileOutputStream(DATABASE)
             val writer = OutputStreamWriter(stream)
             val text = this.gson.toJson(services.toTypedArray(), Array<ServiceStatus>::class.java)
             writer.write(text)
