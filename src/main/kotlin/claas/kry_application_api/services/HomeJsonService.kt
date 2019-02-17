@@ -1,6 +1,7 @@
-package team.ggc.kanzitdinov.vertx_boilerplate.services
+package claas.kry_application_api.services
 
-import team.ggc.kanzitdinov.vertx_boilerplate.models.*
+import claas.kry_application_api.models.HomeJsonResponse
+import claas.kry_application_api.models.*
 import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory

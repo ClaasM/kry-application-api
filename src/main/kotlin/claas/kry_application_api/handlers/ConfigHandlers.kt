@@ -1,4 +1,4 @@
-package team.ggc.kanzitdinov.vertx_boilerplate.handlers
+package claas.kry_application_api.handlers
 
 import io.vertx.core.http.HttpHeaders
 import io.vertx.core.http.HttpMethod

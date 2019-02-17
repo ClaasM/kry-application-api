@@ -1,7 +1,7 @@
-package team.ggc.kanzitdinov.vertx_boilerplate.verticles
+package claas.kry_application_api.verticles
 
-import team.ggc.kanzitdinov.vertx_boilerplate.common.PORT
-import team.ggc.kanzitdinov.vertx_boilerplate.routes.Routes
+import claas.kry_application_api.common.PORT
+import claas.kry_application_api.routes.Routes
 import io.vertx.core.*;
 import io.vertx.core.http.HttpServer
 import io.vertx.kotlin.coroutines.CoroutineVerticle

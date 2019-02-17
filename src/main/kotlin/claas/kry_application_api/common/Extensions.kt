@@ -1,4 +1,4 @@
-package team.ggc.kanzitdinov.vertx_boilerplate.common
+package claas.kry_application_api.common
 
 import io.vertx.core.http.HttpServerResponse
 import io.vertx.core.json.Json
@@ -6,7 +6,7 @@ import io.vertx.ext.web.Route
 import io.vertx.ext.web.RoutingContext
 import io.vertx.kotlin.coroutines.dispatcher
 import kotlinx.coroutines.experimental.launch
-import team.ggc.kanzitdinov.vertx_boilerplate.models.CommonServiceError
+import claas.kry_application_api.models.CommonServiceError
 
 fun HttpServerResponse.endWithJson(obj: Any?, statusCode: Int = 200) {
     setStatusCode(statusCode)

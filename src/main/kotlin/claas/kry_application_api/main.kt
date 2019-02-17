@@ -1,6 +1,6 @@
-package team.ggc.kanzitdinov.vertx_boilerplate
+package claas.kry_application_api
 
-import team.ggc.kanzitdinov.vertx_boilerplate.verticles.MainVerticle
+import claas.kry_application_api.verticles.MainVerticle
 import io.vertx.core.Vertx
 
 fun main(args : Array<String>) {

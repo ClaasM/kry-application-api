@@ -1,12 +1,12 @@
-package team.ggc.kanzitdinov.vertx_boilerplate.handlers
+package claas.kry_application_api.handlers
 
-import team.ggc.kanzitdinov.vertx_boilerplate.common.endWithJson
-import team.ggc.kanzitdinov.vertx_boilerplate.models.Todo
-import team.ggc.kanzitdinov.vertx_boilerplate.services.TodosService
+import claas.kry_application_api.common.endWithJson
+import claas.kry_application_api.models.Todo
+import claas.kry_application_api.services.TodosService
 import com.github.salomonbrys.kotson.fromJson
 import com.google.gson.Gson
 import io.vertx.ext.web.RoutingContext
-import team.ggc.kanzitdinov.vertx_boilerplate.common.safeLaunch
+import claas.kry_application_api.common.safeLaunch
 import java.util.*
 
 class TodosHandlers() {

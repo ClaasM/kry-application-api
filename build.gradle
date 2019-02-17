@@ -48,7 +48,7 @@ dependencies {
 
 // this is made for watching classes to redeploy a verticle
 mainClassName = "io.vertx.core.Launcher"
-def mainVerticleName = "team.ggc.kanzitdinov.vertx_boilerplate.verticles.MainVerticle"
+def mainVerticleName = "claas.kry_application_api.verticles.MainVerticle"
 def watchForChange = 'src/**/*.kt'
 def doOnChange = 'gradle classes'
 

@@ -1,11 +1,11 @@
-package team.ggc.kanzitdinov.vertx_boilerplate.handlers
+package claas.kry_application_api.handlers
 
-import team.ggc.kanzitdinov.vertx_boilerplate.models.SimpleMessage
-import team.ggc.kanzitdinov.vertx_boilerplate.services.HomeJsonService
-import team.ggc.kanzitdinov.vertx_boilerplate.common.endWithJson
+import claas.kry_application_api.models.SimpleMessage
+import claas.kry_application_api.services.HomeJsonService
+import claas.kry_application_api.common.endWithJson
 import io.vertx.ext.web.RoutingContext
 import org.slf4j.LoggerFactory
-import team.ggc.kanzitdinov.vertx_boilerplate.common.safeLaunch
+import claas.kry_application_api.common.safeLaunch
 
 class SimpleHandlers() {
     private val logger = LoggerFactory.getLogger("VertxServer")

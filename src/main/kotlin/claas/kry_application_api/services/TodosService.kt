@@ -1,7 +1,7 @@
-package team.ggc.kanzitdinov.vertx_boilerplate.services
+package claas.kry_application_api.services
 
-import team.ggc.kanzitdinov.vertx_boilerplate.common.updateWhere
-import team.ggc.kanzitdinov.vertx_boilerplate.models.Todo
+import claas.kry_application_api.common.updateWhere
+import claas.kry_application_api.models.Todo
 import java.util.*
 
 class TodosService() {

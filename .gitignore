@@ -7,4 +7,4 @@
 node_modules
 npm-debug.log
 /logs/*log
-kotlin-vertx-boilerplate.iml
+KryApplicationAPI.iml
