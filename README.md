@@ -1,5 +1,7 @@
 # KRY Application - API
 
+This is the API, the centerpiece of the whole system. Run this first.
+
 Based on [this](https://github.com/kanzitelli/kotlin-vertx-boilerplate) boilerplate.
 
 ### Prerequisites
@@ -27,8 +29,10 @@ $ java -jar build/libs/app-shadow.jar
 ### API ENDPOINTS
 
 `HTTP GET /services` returns all services and their status.
+
 `HTTP POST /services` adds a new service to check with name and URL and
 assigns a random id.
+
 `HTTP DELETE /services/{service_id}` removes the service with the
 specified service_id.
 
