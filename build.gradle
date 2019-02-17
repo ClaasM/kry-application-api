@@ -1,21 +1,21 @@
 buildscript {
-  ext.kotlin_version = '1.2.10'
-  ext.vertx_version = '3.5.0'
-  ext.shadow_version = '2.0.0'
-  ext.slf4j_version = '1.7.25' // Logging in the app
-  ext.logback_version = '1.2.3' // Logging to a file, implements SLF4J API, so we can use it with slf4j
-  ext.retrofit_version = '2.3.0' // HTTP client
-  ext.retrofit_coroutines_version = '0.9.0' // makes retrofit's calls work with coroutines
-  ext.kotson_version = '2.5.0' // JSON (w/ Gson) parser
+    ext.kotlin_version = '1.2.10'
+    ext.vertx_version = '3.5.0'
+    ext.shadow_version = '2.0.0'
+    ext.slf4j_version = '1.7.25' // Logging in the app
+    ext.logback_version = '1.2.3' // Logging to a file, implements SLF4J API, so we can use it with slf4j
+    ext.retrofit_version = '2.3.0' // HTTP client
+    ext.retrofit_coroutines_version = '0.9.0' // makes retrofit's calls work with coroutines
+    ext.kotson_version = '2.5.0' // JSON (w/ Gson) parser
 
-  repositories {
-    jcenter()
-  }
+    repositories {
+        jcenter()
+    }
 
-  dependencies {
-    classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version",
-      "com.github.jengelman.gradle.plugins:shadow:$shadow_version"
-  }
+    dependencies {
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version",
+                "com.github.jengelman.gradle.plugins:shadow:$shadow_version"
+    }
 }
 
 apply plugin: 'kotlin'
@@ -23,27 +23,30 @@ apply plugin: 'application'
 apply plugin: 'com.github.johnrengelman.shadow'
 
 repositories {
-  jcenter()
+    jcenter()
 }
 
 dependencies {
-  compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-  compile "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version"
+    compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    compile "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version"
 
-  compile "com.github.salomonbrys.kotson:kotson:$kotson_version"
+    compile "com.github.salomonbrys.kotson:kotson:$kotson_version"
 
-  compile "com.squareup.retrofit2:retrofit:$retrofit_version"
-  compile "com.squareup.retrofit2:converter-gson:$retrofit_version"
-  compile "ru.gildor.coroutines:kotlin-coroutines-retrofit:$retrofit_coroutines_version"
+    compile "com.squareup.retrofit2:retrofit:$retrofit_version"
+    compile "com.squareup.retrofit2:converter-gson:$retrofit_version"
+    compile "ru.gildor.coroutines:kotlin-coroutines-retrofit:$retrofit_coroutines_version"
 
-  compile "io.vertx:vertx-core:$vertx_version"
-  compile "io.vertx:vertx-web:$vertx_version"
-  compile "io.vertx:vertx-lang-kotlin:$vertx_version"
-  compile "io.vertx:vertx-lang-kotlin-coroutines:$vertx_version"
+    compile "io.vertx:vertx-core:$vertx_version"
+    compile "io.vertx:vertx-web:$vertx_version"
+    compile "io.vertx:vertx-lang-kotlin:$vertx_version"
+    compile "io.vertx:vertx-lang-kotlin-coroutines:$vertx_version"
 
-//  runtime "org.slf4j:slf4j-jdk14:$slf4j_version"
-  runtime "ch.qos.logback:logback-classic:$logback_version"
-  compile "org.slf4j:slf4j-api:$slf4j_version"
+    // runtime "org.slf4j:slf4j-jdk14:$slf4j_version"
+    runtime "ch.qos.logback:logback-classic:$logback_version"
+    compile "org.slf4j:slf4j-api:$slf4j_version"
+
+    // Klaxon
+    implementation 'com.beust:klaxon:5.0.1'
 }
 
 // this is made for watching classes to redeploy a verticle
@@ -52,34 +55,34 @@ def mainVerticleName = "claas.kry_application_api.verticles.MainVerticle"
 def watchForChange = 'src/**/*.kt'
 def doOnChange = 'gradle classes'
 
-run{
-  args = ['run', mainVerticleName, "--redeploy=$watchForChange",
-          "--launcher-class=$mainClassName", "--on-redeploy=$doOnChange"]
+run {
+    args = ['run', mainVerticleName, "--redeploy=$watchForChange",
+            "--launcher-class=$mainClassName", "--on-redeploy=$doOnChange"]
 }
 
 compileKotlin {
-  kotlinOptions.jvmTarget= "1.8"
+    kotlinOptions.jvmTarget = "1.8"
 }
 
 // Naming and packaging settings for the "shadow jar".
 shadowJar {
-  baseName = 'app'
-  classifier = 'shadow'
+    baseName = 'app'
+    classifier = 'shadow'
 
-  manifest {
-    attributes 'Main-Verticle': mainVerticleName
-  }
-  mergeServiceFiles {
-    include 'META-INF/services/io.vertx.core.spi.VerticleFactory'
-  }
+    manifest {
+        attributes 'Main-Verticle': mainVerticleName
+    }
+    mergeServiceFiles {
+        include 'META-INF/services/io.vertx.core.spi.VerticleFactory'
+    }
 }
 
 // when we run `gradle wrapper`
 task wrapper(type: Wrapper) {
-  gradleVersion = '4.4'
+    gradleVersion = '4.4'
 }
 
 // Heroku relies on the 'stage' task to deploy.
 task stage {
-  dependsOn shadowJar
+    dependsOn shadowJar
 }

@@ -16,6 +16,6 @@ class ConfigHandlers() {
 
     val otherPageHandler = { ctx: RoutingContext ->
         val response = ctx.response()
-        response.end("Just a plain page")
+        response.end("This endpoint doesn't exist")
     }
 }
