@@ -11,7 +11,6 @@ import java.util.*
 
 class ServiceStatusHandlers() {
     private val ServiceStatusService = ServiceStatusService()
-    private val gson = Gson()
 
     suspend fun getServices(ctx: RoutingContext) {
         safeLaunch(ctx) {
@@ -30,7 +29,7 @@ class ServiceStatusHandlers() {
 
     suspend fun addService(ctx: RoutingContext) {
         safeLaunch(ctx) {
-            val tmpService: ServiceStatus = gson.fromJson(ctx.bodyAsString)
+            val tmpService: ServiceStatus = ServiceStatus.gson.fromJson(ctx.bodyAsString)
             val newService: ServiceStatus = ServiceStatus(serviceURL = tmpService.serviceURL)
             val _service = ServiceStatusService.create(newService)
             ctx.response().endWithJson(_service)

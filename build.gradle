@@ -44,9 +44,6 @@ dependencies {
     // runtime "org.slf4j:slf4j-jdk14:$slf4j_version"
     runtime "ch.qos.logback:logback-classic:$logback_version"
     compile "org.slf4j:slf4j-api:$slf4j_version"
-
-    // Klaxon
-    implementation 'com.beust:klaxon:5.0.1'
 }
 
 // this is made for watching classes to redeploy a verticle
